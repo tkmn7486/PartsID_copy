@@ -1,5 +1,6 @@
 <template>
 <div class="title">
+  <img alt="Vue logo" src="./assets/gear.png">
   <h1>Parts ID Copy</h1>
   <p>copyを押すと管理番号をコピーできます。</p>
 </div>
