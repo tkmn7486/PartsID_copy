@@ -3,7 +3,7 @@
   <img alt="Vue logo" src="./assets/gear.png">
   <h1>Parts ID Copy</h1>
   <p>copyを押すと管理番号をコピーできます。</p>
-  <p>テスト</p>
+  <p class="test">テスト</p>
 </div>
 <div class="contents">
   <table id="table" border="1">
