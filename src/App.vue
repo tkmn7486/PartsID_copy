@@ -17,7 +17,8 @@
     <tbody>
       <tr v-for="wp_part in WP_list" :key="wp_part.id">
         <th>{{wp_part.number}}</th>
-        <th>{{wp_part.name}}</th>
+        <th>{{wp_part.type}}</th>
+        <th>{{wp_part.color}}</th>
         <th>{{wp_part.id}}</th>
         <td class="copyButton">
           <button @click="copyID(wp_part.id)" :key="button">COPY ID</button>
@@ -64,14 +65,20 @@ export default {
 
     return{
       WP_list:[
-        {number:'01' ,name: '11 Pro', id:'SSI-FT-000001'},
-        {number:'02' ,name: 'X', id:'SSI-FT-000002'},
-        {number:'03' ,name: 'XR', id:'SSI-FT-000003'},
-        {number:'04' ,name: 'XS', id:'SSI-FT-000004'},
-        {number:'05' ,name: 'XS Max', id:'SSI-FT-000005'},
-        {number:'06' ,name: '7,8,SE2', id:'SSI-FT-000006'},
-        {number:'07' ,name: '8 Plus', id:'SSI-FT-000007'},
-
+        {number:'1',type:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-'},
+        {number:'2',type:'iPhone 11 Pro Max',id:'SSI-SM-000849',color:'-'},
+        {number:'3',type:'iPhone XS',id:'SSI-SM-000836',color:'-'},
+        {number:'4',type:'iPhone XS Max',id:'SSI-SM-000811',color:'-'},
+        {number:'5',type:'iPhone XR',id:'SSI-SM-000830',color:'-'},
+        {number:'6',type:'iPhone X',id:'SSI-SM-000756',color:'-'},
+        {number:'7',type:'iPhone 8 Plus',id:'SSI-SM-000726',color:'ホワイト'},
+        {number:'8',type:'iPhone 8 Plus',id:'SSI-SM-000727',color:'ブラック'},
+        {number:'9',type:'iPhone 7',id:'SSI-SM-000454',color:'ブラック'},
+        {number:'10',type:'iPhone 7 Plus',id:'SSI-SM-000482',color:'ホワイト'},
+        {number:'11',type:'iPhone 7 Plus',id:'SSI-SM-000481',color:'ブラック'},
+        {number:'12',type:'iPhone 6s',id:'SSI-SM-000330',color:'ブラック'},
+        {number:'13',type:'iPhone 6s Plus',id:'SSI-SM-000512',color:'ホワイト'},
+        {number:'14',type:'iPhone 6s Plus',id:'SSI-SM-000125',color:'ブラック'},
       ],
 
       GF_list:[
