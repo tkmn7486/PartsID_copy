@@ -86,7 +86,7 @@ export default {
         {number:'1',name:'iPhone 12',type:'ガラス',id:'SSO-AC-000086'},
         {number:'2',name:'iPhone 12 mini',type:'ガラス',id:'SSO-AC-000088'},
         {number:'3',name:'iPhone 12 Pro Max',type:'ガラス',id:'SSO-AC-000087'},
-        {number:'4',name:'iPhoneXS Maxガラス',id:'SSO-AC-000079'},
+        {number:'4',name:'iPhoneXS Max',id:'SSO-AC-000079'},
         {number:'5',name:'iPhone XR',type:'ガラス',id:'SSO-AC-000068'},
         {number:'6',name:'iPhone X',type:'ガラス',id:'SSO-AC-000069'},
         {number:'7',name:'iPhone 8',idtype:'ガラス',id:'SSO-AC-000080'},
