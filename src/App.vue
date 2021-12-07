@@ -21,14 +21,15 @@
         <th>{{wp_part.color}}</th>
         <th>{{wp_part.id}}</th>
         <td class="copyButton">
-          <button @click="copyID(wp_part)" :key="button">COPY ID</button>
+          <button @click="copyID(wp_part)" :key="wp_part.id">COPY ID</button>
         </td>
       </tr>
     </tbody>
   </table>
   <img src=WP_list.qr>
-  <p>{{clickedID}}</p>
 </div>
+
+{{clickedID}}
 
 <div class="glass_film">
   <h3>iPhone 保護フィルム</h3>
@@ -47,7 +48,7 @@
         <th>{{gf_part.type}}</th>
         <th>{{gf_part.id}}</th>
         <td class="copyButton">
-          <button @click="copyID(gf_part)" :key="button">COPY ID</button>
+          <button @click="copyID(gf_part)" :key="gf_part.id">COPY ID</button>
         </td>
       </tr>
     </tbody>
@@ -56,9 +57,9 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { ref, defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
   name: 'App',
   setup(){
     const WP_list = ref([
@@ -113,12 +114,12 @@ export default {
       {number:'32',name:'iPhone 4',type:'光沢',id:'SSO-AC-000016'},
     ])
 
-    const clickedID =  ref("")
+    let clickedID =  ref(1)
 
     const copyID = (itemdata) =>{
       navigator.clipboard.writeText(itemdata.id)
       console.log("文字列をコピーしました")
-      // clickedID=itemdata.number;
+      clickedID.value=itemdata.number;
     }
 
     return{
@@ -128,7 +129,7 @@ export default {
       copyID,
     };
   }
-}
+})
 </script>
 
 <style>
