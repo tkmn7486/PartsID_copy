@@ -26,6 +26,8 @@
       </tr>
     </tbody>
   </table>
+  <img src=WP_list.qr>
+  <p>{{clickedID}}</p>
 </div>
 
 <div class="glass_film">
@@ -45,7 +47,7 @@
         <th>{{gf_part.type}}</th>
         <th>{{gf_part.id}}</th>
         <td class="copyButton">
-          <button @click="copyID(gf_part.id)" :key="button">COPY ID</button>
+          <button @click="copyID(gf_part)" :key="button">COPY ID</button>
         </td>
       </tr>
     </tbody>
@@ -58,15 +60,15 @@
 export default {
   name: 'App',
   setup(){
-
-    function copyID(itemname){
-      navigator.clipboard.writeText(itemname)
+    function copyID(itemdata){
+      navigator.clipboard.writeText(itemdata.id)
       console.log("文字列をコピーしました")
+      // clickedID=itemdata.number;
     }
 
     return{
       WP_list:[
-        {number:'1',name:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-'},
+        {number:'1',name:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-',qr:'./qr_img/wp_1.png'},
         {number:'2',name:'iPhone 11 Pro Max',id:'SSI-SM-000849',color:'-'},
         {number:'3',name:'iPhone XS',id:'SSI-SM-000836',color:'-'},
         {number:'4',name:'iPhone XS Max',id:'SSI-SM-000811',color:'-'},
@@ -116,6 +118,7 @@ export default {
         {number:'31',name:'iPhone 4',type:'非光沢',id:'SSO-AC-000017'},
         {number:'32',name:'iPhone 4',type:'光沢',id:'SSO-AC-000016'},
       ],
+      clickedID: "",
       copyID,
     };
   }
