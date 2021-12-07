@@ -26,10 +26,8 @@
       </tr>
     </tbody>
   </table>
-  <img src=WP_list.qr>
+  <img class="wp_qrcode" :src="getURL()" :alt="getURL()">
 </div>
-
-{{clickedID}}
 
 <div class="glass_film">
   <h3>iPhone 保護フィルム</h3>
@@ -63,7 +61,7 @@ export default defineComponent({
   name: 'App',
   setup(){
     const WP_list = ref([
-      {number:'1',name:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-',qr:'./qr_img/wp_1.png'},
+      {number:'1',name:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-'},
       {number:'2',name:'iPhone 11 Pro Max',id:'SSI-SM-000849',color:'-'},
       {number:'3',name:'iPhone XS',id:'SSI-SM-000836',color:'-'},
       {number:'4',name:'iPhone XS Max',id:'SSI-SM-000811',color:'-'},
@@ -114,7 +112,7 @@ export default defineComponent({
       {number:'32',name:'iPhone 4',type:'光沢',id:'SSO-AC-000016'},
     ])
 
-    let clickedID =  ref(1)
+    let clickedID =  ref("1")
 
     const copyID = (itemdata) =>{
       navigator.clipboard.writeText(itemdata.id)
@@ -122,11 +120,16 @@ export default defineComponent({
       clickedID.value=itemdata.number;
     }
 
+    const getURL = () =>{
+      return require('./qr_img/wp_' + clickedID.value + '.png');
+    }
+
     return{
       WP_list,
       GF_list,
       clickedID,
       copyID,
+      getURL,
     };
   }
 })
@@ -164,5 +167,11 @@ li{
 
 .wall{
   display: inline;
+}
+
+.wp_qrcode{
+    position: fixed;
+    right: 20px;
+    bottom: 10px;
 }
 </style>
