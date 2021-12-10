@@ -148,7 +148,7 @@ export default defineComponent({
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 
 img.logo{
@@ -159,6 +159,7 @@ img.logo{
 table{
   margin-left: auto;
   margin-right: auto;
+  margin-bottom:200px;
 }
 
 .title{
