@@ -24,7 +24,7 @@
         <th>{{part.th3}}</th>
         <th>{{part.th4}}</th>
         <td class="copyButton">
-          <button @click="copyID(part)" :key="part.id">COPY ID</button>
+          <button @click="copyID(part)" :key="part.id">📝</button>
         </td>
       </tr>
     </tbody>
