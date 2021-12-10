@@ -37,6 +37,7 @@
       <tr>
         <th class="partsNumber">No.</th>
         <th class="partsName">Parts Name</th>
+        <th class="partsColor">Color</th>
         <th class="ID">Parts ID</th>
       </tr>
     </thead>
