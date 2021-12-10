@@ -5,7 +5,9 @@
   <p>copyを押すと管理番号をコピーできます。</p>
 </div>
 <div class="water_proof">
-  <h3>防水テープ</h3>
+  <button class="changeButton" @click="prevPage">◀</button>
+  <h3 class="tableTitle">{{tableData[pageCount].tableTitle}}</h3>
+  <button class="changeButton" @click="nextPage">▶</button>
   <table id="table" border="2">
     <thead>
       <tr>
@@ -16,43 +18,18 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="wp_part in WP_list" :key="wp_part.id">
-        <th>{{wp_part.number}}</th>
-        <th>{{wp_part.name}}</th>
-        <th>{{wp_part.color}}</th>
-        <th>{{wp_part.id}}</th>
+      <tr v-for="part in tableData[pageCount].list " :key="part.id">
+        <th>{{part.th1}}</th>
+        <th>{{part.th2}}</th>
+        <th>{{part.th3}}</th>
+        <th>{{part.th4}}</th>
         <td class="copyButton">
-          <button @click="copyID(wp_part)" :key="wp_part.id">COPY ID</button>
+          <button @click="copyID(part)" :key="part.id">COPY ID</button>
         </td>
       </tr>
     </tbody>
   </table>
-  <img class="wp_qrcode" :src="getURL()" :alt="getURL()">
-</div>
-
-<div class="glass_film">
-  <h3>iPhone 保護フィルム</h3>
-  <table id="table" border="2">
-    <thead>
-      <tr>
-        <th class="partsNumber">No.</th>
-        <th class="partsName">Parts Name</th>
-        <th class="partsColor">Color</th>
-        <th class="ID">Parts ID</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="gf_part in GF_list" :key="gf_part.id">
-        <th>{{gf_part.number}}</th>
-        <th>{{gf_part.name}}</th>
-        <th>{{gf_part.type}}</th>
-        <th>{{gf_part.id}}</th>
-        <td class="copyButton">
-          <button @click="copyID(gf_part)" :key="gf_part.id">COPY ID</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <img class="qrcode" :src="getURL()" :alt="getURL()">
 </div>
 </template>
 
@@ -62,64 +39,89 @@ import { ref, defineComponent } from 'vue'
 export default defineComponent({
   name: 'App',
   setup(){
-    const WP_list = ref([
-      {number:'1',name:'iPhone 11 Pro',id:'SSI-SM-000850',color:'-'},
-      {number:'2',name:'iPhone 11 Pro Max',id:'SSI-SM-000849',color:'-'},
-      {number:'3',name:'iPhone XS',id:'SSI-SM-000836',color:'-'},
-      {number:'4',name:'iPhone XS Max',id:'SSI-SM-000811',color:'-'},
-      {number:'5',name:'iPhone XR',id:'SSI-SM-000830',color:'-'},
-      {number:'6',name:'iPhone X',id:'SSI-SM-000756',color:'-'},
-      {number:'7',name:'iPhone 8 Plus',id:'SSI-SM-000726',color:'ホワイト'},
-      {number:'8',name:'iPhone 8 Plus',id:'SSI-SM-000727',color:'ブラック'},
-      {number:'9',name:'iPhone 7',id:'SSI-SM-000454',color:'ブラック'},
-      {number:'10',name:'iPhone 7 Plus',id:'SSI-SM-000482',color:'ホワイト'},
-      {number:'11',name:'iPhone 7 Plus',id:'SSI-SM-000481',color:'ブラック'},
-      {number:'12',name:'iPhone 6s',id:'SSI-SM-000330',color:'ブラック'},
-      {number:'13',name:'iPhone 6s Plus',id:'SSI-SM-000512',color:'ホワイト'},
-      {number:'14',name:'iPhone 6s Plus',id:'SSI-SM-000125',color:'ブラック'},
-    ])
+    const tableData = ref([
+      {page:'1',tableTitle:'防水テープ',th1:'No.',th2:'Parts Name',th3:'Color',th4:'Parts ID',
+      list:[
+      {th1:'1',th2:'iPhone 11 Pro',th3:'-',th4:'SSI-SM-000850'},
+      {th1:'2',th2:'iPhone 11 Pro Max',th3:'-',th4:'SSI-SM-000849'},
+      {th1:'3',th2:'iPhone XS',th3:'-',th4:'SSI-SM-000836'},
+      {th1:'4',th2:'iPhone XS Max',th3:'-',th4:'SSI-SM-000811'},
+      {th1:'5',th2:'iPhone XR',th3:'-',th4:'SSI-SM-000830'},
+      {th1:'6',th2:'iPhone X',th3:'-',th4:'SSI-SM-000756'},
+      {th1:'7',th2:'iPhone 8 Plus',th3:'ホワイト',th4:'SSI-SM-000726'},
+      {th1:'8',th2:'iPhone 8 Plus',th3:'ブラック',th4:'SSI-SM-000727'},
+      {th1:'9',th2:'iPhone 7',th3:'ブラック',th4:'SSI-SM-000454'},
+      {th1:'10',th2:'iPhone 7 Plus',th3:'ホワイト',th4:'SSI-SM-000482'},
+      {th1:'11',th2:'iPhone 7 Plus',th3:'ブラック',th4:'SSI-SM-000481'},
+      {th1:'12',th2:'iPhone 6s',th3:'ブラック',th4:'SSI-SM-000330'},
+      {th1:'13',th2:'iPhone 6s Plus',th3:'ホワイト',th4:'SSI-SM-000512'},
+      {th1:'14',th2:'iPhone 6s Plus',th3:'ブラック',th4:'SSI-SM-000125'},
+      ]},
 
-    const GF_list = ref([
-      {number:'1',name:'iPhone 12',type:'ガラス',id:'SSO-AC-000086'},
-      {number:'2',name:'iPhone 12 mini',type:'ガラス',id:'SSO-AC-000088'},
-      {number:'3',name:'iPhone 12 Pro Max',type:'ガラス',id:'SSO-AC-000087'},
-      {number:'4',name:'iPhoneXS Max',id:'SSO-AC-000079'},
-      {number:'5',name:'iPhone XR',type:'ガラス',id:'SSO-AC-000068'},
-      {number:'6',name:'iPhone X',type:'ガラス',id:'SSO-AC-000069'},
-      {number:'7',name:'iPhone 8',idtype:'ガラス',id:'SSO-AC-000080'},
-      {number:'8',name:'iPhone 7',type:'非光沢',id:'SSO-AC-000005'},
-      {number:'9',name:'iPhone 7',type:'光沢',id:'SSO-AC-000004'},
-      {number:'10',name:'iPhone 7',type:'フルラウンド／ホワイト',id:'SSO-AC-000077'},
-      {number:'11',name:'iPhone 7',type:'フルラウンド／ブラック',id:'SSO-AC-000078'},
-      {number:'12',name:'iPhone 7',type:'ガラス',id:'SSO-AC-000006'},
-      {number:'13',name:'iPhone 7',type:'3Dガラス/フレーム付き／ブラック',id:'SSO-AC-000060'},
-      {number:'14',name:'iPhone 7 Plus',type:'非光沢',id:'SSO-AC-000002'},
-      {number:'15',name:'iPhone 7 Plus',type:'光沢',id:'SSO-AC-000001'},
-      {number:'16',name:'iPhone 7 Plus',type:'ガラス',id:'SSO-AC-000003'},
-      {number:'17',name:'iPhone 7 Plus',type:'3Dガラス/フレーム付き／ホワイト',id:'SSO-AC-000065'},
-      {number:'18',name:'iPhone 7 Plus',type:'3Dガラス/フレーム付き／ブラック',id:'SSO-AC-000064'},
-      {number:'19',name:'iPhone 6s Plus',type:'フルラウンドガラス／ホワイト',id:'SSO-AC-000067'},
-      {number:'20',name:'iPhone 6s Plus',type:'フルラウンドガラス／ブラック',id:'SSO-AC-000066'},
-      {number:'21',name:'iPhone 6',type:'非光沢',id:'SSO-AC-000011'},
-      {number:'22',name:'iPhone 6',type:'光沢',id:'SSO-AC-000010'},
-      {number:'23',name:'iPhone 6',type:'フルラウンドガラス／ホワイト',id:'SSO-AC-000059'},
-      {number:'24',name:'iPhone 6',type:'フルラウンドガラス／ブラック',id:'SSO-AC-000058'},
-      {number:'25',name:'iPhone 6 Plus',type:'非光沢',id:'SSO-AC-000008'},
-      {number:'26',name:'iPhone 6 Plus',type:'光沢',id:'SSO-AC-000007'},
-      {number:'27',name:'iPhone 5',type:'衝撃吸収',id:'SSO-AC-000015'},
-      {number:'28',name:'iPhone 5',type:'非光沢',id:'SSO-AC-000014'},
-      {number:'29',name:'iPhone 5',type:'光沢',id:'SSO-AC-000013'},
-      {number:'30',name:'iPhone 5',type:'ガラス',id:'SSO-AC-000082'},
-      {number:'31',name:'iPhone 4',type:'非光沢',id:'SSO-AC-000017'},
-      {number:'32',name:'iPhone 4',type:'光沢',id:'SSO-AC-000016'},
+      {page:'2',tableTitle:'保護フィルム',th1:'No.',th2:'Parts Name',th3:'Type',th4:'Parts ID',
+      list:[
+      {th1:'1',th2:'iPhone 12',th3:'ガラス',th4:'SSO-AC-000086'},
+      {th1:'2',th2:'iPhone 12 mini',th3:'ガラス',th4:'SSO-AC-000088'},
+      {th1:'3',th2:'iPhone 12 Pro Max',th3:'ガラス',th4:'SSO-AC-000087'},
+      {th1:'4',th2:'iPhoneXS Max',th3:'',th4:'SSO-AC-000079'},
+      {th1:'5',th2:'iPhone XR',th3:'ガラス',th4:'SSO-AC-000068'},
+      {th1:'6',th2:'iPhone X',th3:'ガラス',th4:'SSO-AC-000069'},
+      {th1:'7',th2:'iPhone 8',th3:'ガラス',th4:'SSO-AC-000080'},
+      {th1:'8',th2:'iPhone 7',th3:'非光沢',th4:'SSO-AC-000005'},
+      {th1:'9',th2:'iPhone 7',th3:'光沢',th4:'SSO-AC-000004'},
+      {th1:'10',th2:'iPhone 7',th3:'フルラウンド／ホワイト',th4:'SSO-AC-000077'},
+      {th1:'11',th2:'iPhone 7',th3:'フルラウンド／ブラック',th4:'SSO-AC-000078'},
+      {th1:'12',th2:'iPhone 7',th3:'ガラス',th4:'SSO-AC-000006'},
+      {th1:'13',th2:'iPhone 7',th3:'3Dガラス/フレーム付き／ブラック',th4:'SSO-AC-000060'},
+      {th1:'14',th2:'iPhone 7 Plus',th3:'非光沢',th4:'SSO-AC-000002'},
+      {th1:'15',th2:'iPhone 7 Plus',th3:'光沢',th4:'SSO-AC-000001'},
+      {th1:'16',th2:'iPhone 7 Plus',th3:'ガラス',th4:'SSO-AC-000003'},
+      {th1:'17',th2:'iPhone 7 Plus',th3:'3Dガラス/フレーム付き／ホワイト',th4:'SSO-AC-000065'},
+      {th1:'18',th2:'iPhone 7 Plus',th3:'3Dガラス/フレーム付き／ブラック',th4:'SSO-AC-000064'},
+      {th1:'19',th2:'iPhone 6s Plus',th3:'フルラウンドガラス／ホワイト',th4:'SSO-AC-000067'},
+      {th1:'20',th2:'iPhone 6s Plus',th3:'フルラウンドガラス／ブラック',th4:'SSO-AC-000066'},
+      {th1:'21',th2:'iPhone 6',th3:'非光沢',th4:'SSO-AC-000011'},
+      {th1:'22',th2:'iPhone 6',th3:'光沢',th4:'SSO-AC-000010'},
+      {th1:'23',th2:'iPhone 6',th3:'フルラウンドガラス／ホワイト',th4:'SSO-AC-000059'},
+      {th1:'24',th2:'iPhone 6',th3:'フルラウンドガラス／ブラック',th4:'SSO-AC-000058'},
+      {th1:'25',th2:'iPhone 6 Plus',th3:'非光沢',th4:'SSO-AC-000008'},
+      {th1:'26',th2:'iPhone 6 Plus',th3:'光沢',th4:'SSO-AC-000007'},
+      {th1:'27',th2:'iPhone 5',th3:'衝撃吸収',th4:'SSO-AC-000015'},
+      {th1:'28',th2:'iPhone 5',th3:'非光沢',th4:'SSO-AC-000014'},
+      {th1:'29',th2:'iPhone 5',th3:'光沢',th4:'SSO-AC-000013'},
+      {th1:'30',th2:'iPhone 5',th3:'ガラス',th4:'SSO-AC-000082'},
+      {th1:'31',th2:'iPhone 4',th3:'非光沢',th4:'SSO-AC-000017'},
+      {th1:'32',th2:'iPhone 4',th3:'光沢',th4:'SSO-AC-000016'},
+      ]}
     ])
 
     let clickedID =  ref("1")
+    let pageCount = ref(0)
 
     const copyID = (itemdata) =>{
-      navigator.clipboard.writeText(itemdata.id)
+      navigator.clipboard.writeText(itemdata.th4)
       console.log("文字列をコピーしました")
-      clickedID.value=itemdata.number;
+      clickedID.value=itemdata.th1;
+    }
+
+    const nextPage =()=>{
+      if(pageCount.value>=1){
+        pageCount.value=0;
+        console.log(pageCount)
+      }else{
+        pageCount.value=pageCount.value+1;
+        console.log(pageCount)
+      }
+    }
+
+    const prevPage =()=>{
+      if(pageCount.value<=0){
+        pageCount.value=1;
+        console.log(pageCount)
+      }else{
+        pageCount.value=pageCount.value-1;
+        console.log(pageCount)
+      }
     }
 
     const getURL = () =>{
@@ -127,11 +129,13 @@ export default defineComponent({
     }
 
     return{
-      WP_list,
-      GF_list,
       clickedID,
+      tableData,
+      pageCount,
       copyID,
       getURL,
+      nextPage,
+      prevPage,
     };
   }
 })
@@ -171,9 +175,21 @@ li{
   display: inline;
 }
 
-.wp_qrcode{
+.qrcode{
     position: fixed;
     right: 20px;
     bottom: 10px;
+}
+
+.changeButton{
+  display:inline;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:10px;
+}
+
+.tableTitle{
+  display:inline;
+  margin-bottom:10px;
 }
 </style>
