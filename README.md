@@ -1,24 +1,21 @@
 # ss_partsid_copyapp
+入出庫作業の効率化を図るために開発したWEBアプリケーション
 
-## Project setup
-```
-npm install
-```
+## 言語・ツール・開発環境
+### 言語
+- Javascript(Vue.js)
+- HTML
+- CSS
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+### ツール
+- Visual Studio Code
 
-### Compiles and minifies for production
-```
-npm run build
-```
+### 開発環境
+- Windows 10 Pro
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 仕様
+- 選択したパーツのIDをクリップボードに貼り付け
+- 上記と同時にQRコードの表示
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## ローカルサーバー立ち上げ
+$ npm run serve
